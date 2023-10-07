@@ -17,7 +17,12 @@ const Nav = () => {
 
     const provider = new GoogleAuthProvider();
 
-    const [userData, SetUserData] = useState({});
+    const initialUserData = localStorage.getItem("userData") ?
+    JSON.parse(localStorage.getItem("userData")) : {};
+
+    const [userData, SetUserData] = useState({initialUserData});
+
+    console.log(userData)
 
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
@@ -55,6 +60,7 @@ const Nav = () => {
         signInWithPopup(auth, provider)
         .then(result => {
             SetUserData(result.user);
+            localStorage.setItem('userData', JSON.stringify(result.user));
         })
         .catch(error => {
             console.log(error);
@@ -86,12 +92,13 @@ const Nav = () => {
 
         {pathname === "/" ? 
             (<Login onClick={handleAuth}>Login</Login>) : 
+            <>
             <Input 
                 value={searchValue}
                 onChange= {handleChange} 
                 className='nav__input' 
                 type="text" 
-                placeholder='검색해주세요.'/>}
+                placeholder='검색해주세요.'/>
 
         <SignOut>
             <UserImg src={userData.photoURL} alt='userData.displayName'>
@@ -100,7 +107,8 @@ const Nav = () => {
                 </DropDown>
             </UserImg>
         </SignOut>    
-
+        </>
+        }
       </NavWrapper>
     </div>
   )
@@ -204,4 +212,5 @@ const UserImg = styled.div`
   border-radius: 50%;
   width: 100%;
   height: 100%;
+  border: 1px solid white;
 `;
