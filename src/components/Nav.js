@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup } from 'firebase/auth'
+import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut } from 'firebase/auth'
 
 const Nav = () => {
     
@@ -61,15 +61,26 @@ const Nav = () => {
         })
     }
 
+    const handleSignOut = () => {
+        signOut(auth)
+          .then(() => {
+            SetUserData({});
+            navigate(`/`);
+          })
+          .catch((error) => {
+            console.log(error)
+          })
+      }
+
   return (
     <div>
     {/* props로 넣어주기 */}
       <NavWrapper show={show}>
         <Logo>
             <img
-                alt="Disney Plus Logo"
-                src="/images/logo.svg"
-                onClick={() => (window.location.href = "./")}
+            src="/images/logo.svg"
+            alt="Disney Plus Logo"
+            onClick={() => (window.location.href = "./")}
             />
         </Logo>
 
@@ -85,7 +96,7 @@ const Nav = () => {
         <SignOut>
             <UserImg src={userData.photoURL} alt='userData.displayName'>
                 <DropDown>
-                    <span>Sign Out</span>
+                    <span onClick={handleSignOut}>Sign Out</span>
                 </DropDown>
             </UserImg>
         </SignOut>    
@@ -99,18 +110,19 @@ export default Nav
 
 
 const Login = styled.a`
-    background-color: rgba(0,0,0,0.6);
-    padding: 8px 16px;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    border: 1px solid #f9f9f9;
-    transition: all 0.2s ease 0s;
+  background-color: rgba(0,0,0,0.6);
+  padding: 8px 16px;
+  text-transform: uppercase;
+  margin-left: auto;
+  letter-spacing: 1.5px;
+  border: 1px solid #f9f9f9;
+  transition: all 0.2s ease 0s;
 
-    &:hover {
+  &:hover {
     background-color: #f9f9f9;
     color: gray;
     border-color: transparent;
-    }
+  }
 `;
 
 
@@ -153,11 +165,43 @@ const Logo = styled.a`
     }
 `
 
-const SignOut = styled.div`
+const DropDown = styled.div`
+  position: absolute;
+  top: 48px;
+  right: 0px;
+  background: rgb(19, 19, 19);
+  border: 1px solid rgba(151, 151, 151, 0.34);
+  border-radius:  4px;
+  box-shadow: rgb(0 0 0 /50%) 0px 0px 18px 0px;
+  padding: 10px;
+  font-size: 14px;
+  letter-spacing: 3px;
+  width: 100%;
+  opacity: 0;
 `;
+
+const SignOut = styled.div`
+  position: relative;
+  height: 48px;
+  width: 48px;
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    ${DropDown} {
+      opacity: 1;
+      transition-duration: 1s;
+    }
+  }
+`;
+
+ 
+// styled.img로 하면 img is a void element tag and must neither have `children` nor use `dangerouslySetInnerHTML`. 이 오류 뜸
 
 const UserImg = styled.div`
-`;
-
-const DropDown = styled.div`
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
 `;
