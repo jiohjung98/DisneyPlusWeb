@@ -116,3 +116,17 @@
     inset: 20px;
     /* all edges = 20px */
 }
+
+@media screen and (max-width: 770px) {
+    .banner-title {
+        display: none;
+    }
+
+    .banner__buttons {
+        display: none;
+    }
+
+    .banner__description {
+        display: none;
+    }
+}

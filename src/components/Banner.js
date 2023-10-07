@@ -70,7 +70,7 @@ const Banner = () => {
               <div className='banner__buttons'>
                 {movie?.videos?.results[0]?.key &&
                 <button
-                className='banner_button play'
+                className='banner_button'
                 onClick={() => setIsClicked(true)}>
                   Play
                 </button>
