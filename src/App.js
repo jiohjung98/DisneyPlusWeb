@@ -1,4 +1,5 @@
-import { BrowserRouter as Router, Outlet, Route, Routes } from 'react-router-dom';
+import React from 'react';
+import { Outlet, Route, Routes } from 'react-router-dom';
 import styled from 'styled-components';
 import requests from './api/request';
 import './App.css';
@@ -11,21 +12,18 @@ import MainPage from './pages/MainPage';
 import SearchPage from './pages/SearchPage';
 import DetailPage from './pages/DetailPage';
 
-const Layout =() => {
-  return(
+const Layout = () => {
+  return (
     <div>
       <Nav />
-
       <Outlet />
     </div>
-  )
-}
-
+  );
+};
 
 function App() {
   return (
-   <div className='app'>
-    <Router>
+    <div className='app'>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<LoginPage />} />
@@ -34,10 +32,8 @@ function App() {
           <Route path="search" element={<SearchPage />} />
         </Route>
       </Routes>
-    </Router>
-   </div>
+    </div>
   );
 }
 
 export default App;
-
