@@ -1,70 +1,26 @@
-# Getting Started with Create React App
+commit 9fac46faea645e0030197760544e4595add3cd4c
+Author: 정지오 <104253583+jiohjung98@users.noreply.github.com>
+Date:   Tue Oct 17 19:18:50 2023 +0900
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+    Update README.md
 
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+diff --git a/README.md b/README.md
+index 060de01..5423b82 100644
+--- a/README.md
++++ b/README.md
+@@ -35,11 +35,15 @@ https://react-disney-plus-app-543ef.web.app
+ useState, hook 등 리액트에서 사용되는 개념을 직접 사용하다보니 어렵게만 느껴졌던 리액트가 어느정도는 친숙해짐<br/>
+ 하지만, 유저 이미지를 가져오는 부분과 스와이퍼 부분에서 오류가 생겨 해결하지 못했음<br/>
+ 스와이퍼는 지난 과제에서도 해결하지 못해 슬릭을 이용해 슬라이더를 구현했는데 이번에도 스와이퍼를 사용하니 계속 import 오류가 남<br/>
++
+ styled-component를 사용해 코드를<br/>
+ <img width="487" alt="image" src="https://github.com/jiohjung98/DisneyPlusWeb/assets/104253583/47d8c083-706b-4290-90a4-315bf152d9ad"><br/><br/>
+ 이렇게 적고 styled-component를<br/>
+ <img width="301" alt="image" src="https://github.com/jiohjung98/DisneyPlusWeb/assets/104253583/13a0e719-8cd4-417c-877d-1c6566dc357e"><br/><br/>
+ 이렇게 작성했는데, img is a void element tag and must neither have `children` nor use `dangerouslySetInnerHTML`. 이런 오류가 계속 떠서<br/>
+ styled.div로 작성해서 구성했음. 그래서 이미지가 안뜨는건지 잘 모르겠는데 이부분은 한 번 공부해봐야겠다는 생각을 함
++-> 해결(UserImg를 감싸는 부분이 잘못됐었음)
++
++
+ 
+ 
