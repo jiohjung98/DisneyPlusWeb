@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut } from 'firebase/auth'
+import { useDispatch, useSelector } from 'react-redux'
+import { setUser, removeUser } from '../store/userSlice'
 
 const Nav = () => {
     
@@ -17,10 +19,14 @@ const Nav = () => {
 
     const provider = new GoogleAuthProvider();
 
+    const dispatch = useDispatch();
+
     const initialUserData = localStorage.getItem("userData") ?
     JSON.parse(localStorage.getItem("userData")) : {};
 
-    const [userData, SetUserData] = useState({initialUserData});
+    // const [userData, SetUserData] = useState({initialUserData});
+
+    const userData = useSelector(state => state.user)
 
     console.log(userData)
 
@@ -59,8 +65,15 @@ const Nav = () => {
     const handleAuth = () => {
         signInWithPopup(auth, provider)
         .then(result => {
-            SetUserData(result.user);
-            localStorage.setItem('userData', JSON.stringify(result.user));
+            // SetUserData(result.user);
+
+            dispatch(setUser({
+              id: result.user.uid,
+              email : result.user.email,
+              displayName: result.user.displayName,
+              photoURL: result.user.photoURL
+            }))
+            // localStorage.setItem('userData', JSON.stringify(result.user));
         })
         .catch(error => {
             console.log(error);
@@ -70,7 +83,8 @@ const Nav = () => {
     const handleSignOut = () => {
         signOut(auth)
           .then(() => {
-            SetUserData({});
+            dispatch(removeUser())
+            // SetUserData({});
             navigate(`/`);
           })
           .catch((error) => {
@@ -101,11 +115,10 @@ const Nav = () => {
                 placeholder='검색해주세요.'/>
 
         <SignOut>
-            <UserImg src={userData.photoURL} alt='userData.displayName'>
+            <UserImg src={userData.photoURL} alt={userData.displayName} />
                 <DropDown>
                     <span onClick={handleSignOut}>Sign Out</span>
                 </DropDown>
-            </UserImg>
         </SignOut>    
         </>
         }
@@ -208,7 +221,7 @@ const SignOut = styled.div`
  
 // styled.img로 하면 img is a void element tag and must neither have `children` nor use `dangerouslySetInnerHTML`. 이 오류 뜸
 
-const UserImg = styled.div`
+const UserImg = styled.img`
   border-radius: 50%;
   width: 100%;
   height: 100%;
